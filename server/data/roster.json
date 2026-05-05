@@ -1,0 +1,254 @@
+[
+  {
+    "id": "anastasia-mathews",
+    "name": "Anastasia Mathews",
+    "salesExempt": false,
+    "onLOA": false,
+    "promotable": false,
+    "attendanceStrikes": 0,
+    "targetExempt": false
+  },
+  {
+    "id": "antonio-zee-mayberry",
+    "name": "Antonio Zee Mayberry",
+    "salesExempt": false,
+    "onLOA": false,
+    "promotable": false,
+    "attendanceStrikes": 0,
+    "targetExempt": false
+  },
+  {
+    "id": "archie-willis",
+    "name": "Archie Willis",
+    "salesExempt": false,
+    "onLOA": false,
+    "promotable": false,
+    "attendanceStrikes": 0,
+    "targetExempt": false
+  },
+  {
+    "id": "aspen-monroe",
+    "name": "Aspen Monroe",
+    "salesExempt": false,
+    "onLOA": false,
+    "promotable": false,
+    "attendanceStrikes": 0,
+    "targetExempt": false
+  },
+  {
+    "id": "blossom-turner",
+    "name": "Blossom Turner",
+    "salesExempt": false,
+    "onLOA": false,
+    "promotable": false,
+    "attendanceStrikes": 0,
+    "targetExempt": false
+  },
+  {
+    "id": "carianna-treyton",
+    "name": "Carianna Treyton",
+    "salesExempt": false,
+    "onLOA": false,
+    "promotable": false,
+    "attendanceStrikes": 0,
+    "targetExempt": false
+  },
+  {
+    "id": "colin-burns",
+    "name": "Colin Burns",
+    "salesExempt": true,
+    "onLOA": false,
+    "promotable": false,
+    "attendanceStrikes": 0,
+    "targetExempt": false
+  },
+  {
+    "id": "drusilla-crane",
+    "name": "Drusilla Crane",
+    "salesExempt": false,
+    "onLOA": false,
+    "promotable": false,
+    "attendanceStrikes": 0,
+    "targetExempt": false
+  },
+  {
+    "id": "ember-burns",
+    "name": "Ember Burns",
+    "salesExempt": true,
+    "onLOA": false,
+    "promotable": false,
+    "attendanceStrikes": 0,
+    "targetExempt": false
+  },
+  {
+    "id": "evie-burns-ackerman",
+    "name": "Evie Burns-Ackerman",
+    "salesExempt": false,
+    "onLOA": false,
+    "promotable": false,
+    "attendanceStrikes": 0,
+    "targetExempt": false
+  },
+  {
+    "id": "frank-creed",
+    "name": "Frank Creed",
+    "salesExempt": false,
+    "onLOA": false,
+    "promotable": false,
+    "attendanceStrikes": 0,
+    "targetExempt": false
+  },
+  {
+    "id": "gwen-mochi",
+    "name": "Gwen Mochi",
+    "salesExempt": false,
+    "onLOA": true,
+    "promotable": false,
+    "attendanceStrikes": 0,
+    "targetExempt": false
+  },
+  {
+    "id": "jackson-stryder",
+    "name": "Jackson Stryder",
+    "salesExempt": false,
+    "onLOA": false,
+    "promotable": false,
+    "attendanceStrikes": 0,
+    "targetExempt": false
+  },
+  {
+    "id": "james-dunn",
+    "name": "James Dunn",
+    "salesExempt": false,
+    "onLOA": false,
+    "promotable": false,
+    "attendanceStrikes": 0,
+    "targetExempt": false
+  },
+  {
+    "id": "jaxon-yates",
+    "name": "Jaxon Yates",
+    "salesExempt": false,
+    "onLOA": false,
+    "promotable": false,
+    "attendanceStrikes": 0,
+    "targetExempt": false
+  },
+  {
+    "id": "jazmin-greene",
+    "name": "Jazmin Greene",
+    "salesExempt": false,
+    "onLOA": false,
+    "promotable": false,
+    "attendanceStrikes": 0,
+    "targetExempt": false
+  },
+  {
+    "id": "jon-wellard-di-amante-ackerman",
+    "name": "Jon Wellard di Amante-Ackerman",
+    "salesExempt": false,
+    "onLOA": false,
+    "promotable": false,
+    "attendanceStrikes": 0,
+    "targetExempt": false
+  },
+  {
+    "id": "lyra-moore",
+    "name": "Lyra Moore",
+    "salesExempt": false,
+    "onLOA": false,
+    "promotable": false,
+    "attendanceStrikes": 0,
+    "targetExempt": false
+  },
+  {
+    "id": "mark-chambers",
+    "name": "Mark Chambers",
+    "salesExempt": false,
+    "onLOA": false,
+    "promotable": false,
+    "attendanceStrikes": 0,
+    "targetExempt": false
+  },
+  {
+    "id": "morgana-huxley",
+    "name": "Morgana Huxley",
+    "salesExempt": false,
+    "onLOA": false,
+    "promotable": false,
+    "attendanceStrikes": 0,
+    "targetExempt": false
+  },
+  {
+    "id": "persephone-huxley",
+    "name": "Persephone Huxley",
+    "salesExempt": false,
+    "onLOA": false,
+    "promotable": false,
+    "attendanceStrikes": 0,
+    "targetExempt": false
+  },
+  {
+    "id": "rhet-pope",
+    "name": "Rhet Pope",
+    "salesExempt": false,
+    "onLOA": false,
+    "promotable": false,
+    "attendanceStrikes": 0,
+    "targetExempt": false
+  },
+  {
+    "id": "russ-tickle",
+    "name": "Russ Tickle",
+    "salesExempt": false,
+    "onLOA": false,
+    "promotable": false,
+    "attendanceStrikes": 0,
+    "targetExempt": false
+  },
+  {
+    "id": "saya-juniper",
+    "name": "Saya Juniper",
+    "salesExempt": false,
+    "onLOA": true,
+    "promotable": false,
+    "attendanceStrikes": 0,
+    "targetExempt": false
+  },
+  {
+    "id": "stormy-treyton",
+    "name": "Stormy Treyton",
+    "salesExempt": false,
+    "onLOA": true,
+    "promotable": false,
+    "attendanceStrikes": 0,
+    "targetExempt": false
+  },
+  {
+    "id": "tyler-zee",
+    "name": "Tyler Zee",
+    "salesExempt": false,
+    "onLOA": false,
+    "promotable": false,
+    "attendanceStrikes": 0,
+    "targetExempt": false
+  },
+  {
+    "id": "ukiyo-ledger",
+    "name": "Ukiyo Ledger",
+    "salesExempt": false,
+    "onLOA": true,
+    "promotable": false,
+    "attendanceStrikes": 0,
+    "targetExempt": false
+  },
+  {
+    "id": "viola-may",
+    "name": "Viola May",
+    "salesExempt": false,
+    "onLOA": false,
+    "promotable": false,
+    "attendanceStrikes": 0,
+    "targetExempt": false
+  }
+]
