@@ -13,8 +13,15 @@ const SALES_FILE = path.join(__dirname, 'data', 'sales.json')
 const ROSTER_KEY = 'blackwoods:roster'
 const SALES_KEY = 'blackwoods:sales'
 
+function hasKvConfig() {
+  return Boolean(
+    process.env.KV_REST_API_URL &&
+    process.env.KV_REST_API_TOKEN
+  )
+}
+
 function useRemoteStorage() {
-  return Boolean(kv && process.env.VERCEL)
+  return Boolean(kv && process.env.VERCEL && hasKvConfig())
 }
 
 async function readJsonFile(filePath, fallback) {

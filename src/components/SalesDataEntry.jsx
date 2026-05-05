@@ -12,6 +12,7 @@ export default function SalesDataEntry({ onClose }) {
   const [roster, setRoster] = useState([])
   const [salesData, setSalesData] = useState([])
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState('')
   
   // Form state
   const [selectedStaffId, setSelectedStaffId] = useState('')
@@ -24,11 +25,27 @@ export default function SalesDataEntry({ onClose }) {
   const [submitting, setSubmitting] = useState(false)
   const [report, setReport] = useState(null)
 
+  async function fetchJson(url, options = {}, timeoutMs = 8000) {
+    const controller = new AbortController()
+    const timeoutId = setTimeout(() => controller.abort(), timeoutMs)
+    try {
+      const res = await fetch(url, { ...options, signal: controller.signal })
+      const data = await res.json().catch(() => null)
+      if (!res.ok) {
+        throw new Error(data?.error || `Request failed (${res.status})`)
+      }
+      return data
+    } finally {
+      clearTimeout(timeoutId)
+    }
+  }
+
   async function fetchRoster() {
     try {
-      const res = await fetch('/api/roster')
-      const data = await res.json()
+      const data = await fetchJson('/api/roster')
       setRoster(data)
+    } catch (err) {
+      setError(err.message || 'Unable to load roster data')
     } finally {
       setLoading(false)
     }
@@ -36,11 +53,10 @@ export default function SalesDataEntry({ onClose }) {
 
   async function fetchSalesData() {
     try {
-      const res = await fetch('/api/sales')
-      const data = await res.json()
+      const data = await fetchJson('/api/sales')
       setSalesData(data)
     } catch (e) {
-      console.error('Failed to fetch sales data:', e)
+      setError(e.message || 'Unable to load sales data')
     }
   }
 
@@ -89,8 +105,10 @@ export default function SalesDataEntry({ onClose }) {
 
   async function handleSubmit(e) {
     e.preventDefault()
+    setError('')
     
     if (!selectedStaffId || !saturdayForWeek) {
+      setError('Please select a staff member and Saturday date')
       return
     }
 
@@ -98,6 +116,7 @@ export default function SalesDataEntry({ onClose }) {
     const timeInHours = totalMinutes / 60
 
     if (timeInHours === 0 && Number(salesAmount || 0) === 0) {
+      setError('Sales or time clocked must be greater than 0')
       return
     }
 
@@ -114,16 +133,11 @@ export default function SalesDataEntry({ onClose }) {
         timeClocked: timeInHours,
       }
 
-      const res = await fetch('/api/sales', {
+      await fetchJson('/api/sales', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       })
-
-      if (!res.ok) {
-        setSubmitting(false)
-        return
-      }
 
       setSelectedStaffId('')
       setSaturdayDate('')
@@ -135,6 +149,7 @@ export default function SalesDataEntry({ onClose }) {
       
       fetchSalesData()
     } catch (e) {
+      setError(e.message || 'Unable to save sales data')
     }
     setSubmitting(false)
   }
@@ -142,10 +157,10 @@ export default function SalesDataEntry({ onClose }) {
   async function generateReport() {
     if (!weekId) return
     try {
-      const res = await fetch(`/api/report/${weekId}`)
-      const data = await res.json()
+      const data = await fetchJson(`/api/report/${weekId}`)
       setReport(data)
     } catch (e) {
+      setError(e.message || 'Unable to generate report')
     }
   }
 
@@ -157,6 +172,8 @@ export default function SalesDataEntry({ onClose }) {
         <h2 className="text-xl font-semibold text-cream">Sales Data Entry</h2>
         <button className="btn btn-outline" onClick={onClose}>Close</button>
       </div>
+
+      {error && <p className="mb-4 rounded border border-red-500/30 bg-red-500/10 px-3 py-2 text-sm text-red-200">{error}</p>}
 
       {!report ? (
         <>

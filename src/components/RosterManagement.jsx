@@ -11,17 +11,35 @@ function Pill({ children, className = '' }) {
 export default function RosterManagement({ onClose }) {
   const [roster, setRoster] = useState([])
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState('')
   const [newName, setNewName] = useState('')
   const [newSalesExempt, setNewSalesExempt] = useState(false)
   const [editingId, setEditingId] = useState(null)
   const [editData, setEditData] = useState({})
 
+  async function fetchJson(url, options = {}, timeoutMs = 8000) {
+    const controller = new AbortController()
+    const timeoutId = setTimeout(() => controller.abort(), timeoutMs)
+    try {
+      const res = await fetch(url, { ...options, signal: controller.signal })
+      const data = await res.json().catch(() => null)
+      if (!res.ok) {
+        throw new Error(data?.error || `Request failed (${res.status})`)
+      }
+      return data
+    } finally {
+      clearTimeout(timeoutId)
+    }
+  }
+
   async function fetchRoster() {
     setLoading(true)
+    setError('')
     try {
-      const res = await fetch('/api/roster')
-      const data = await res.json()
+      const data = await fetchJson('/api/roster')
       setRoster(data)
+    } catch (err) {
+      setError(err.message || 'Unable to load roster data')
     } finally {
       setLoading(false)
     }
@@ -32,24 +50,37 @@ export default function RosterManagement({ onClose }) {
   async function addStaff(e) {
     e && e.preventDefault()
     if (!newName.trim()) return
-    const payload = { name: newName, salesExempt: !!newSalesExempt }
-    const res = await fetch('/api/roster', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
-    if (res.ok) {
+    setError('')
+    try {
+      const payload = { name: newName, salesExempt: !!newSalesExempt }
+      await fetchJson('/api/roster', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
       setNewName('')
       setNewSalesExempt(false)
       fetchRoster()
+    } catch (err) {
+      setError(err.message || 'Unable to add staff')
     }
   }
 
   async function removeStaff(id) {
     if (!confirm('Remove staff?')) return
-    const res = await fetch(`/api/roster/${id}`, { method: 'DELETE' })
-    if (res.ok) fetchRoster()
+    setError('')
+    try {
+      await fetchJson(`/api/roster/${id}`, { method: 'DELETE' })
+      fetchRoster()
+    } catch (err) {
+      setError(err.message || 'Unable to remove staff')
+    }
   }
 
   async function patchStaff(id, patch) {
-    const res = await fetch(`/api/roster/${id}`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(patch) })
-    if (res.ok) fetchRoster()
+    setError('')
+    try {
+      await fetchJson(`/api/roster/${id}`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(patch) })
+      fetchRoster()
+    } catch (err) {
+      setError(err.message || 'Unable to update staff')
+    }
   }
 
   function sortedRoster() {
@@ -136,6 +167,8 @@ export default function RosterManagement({ onClose }) {
           <button className="btn btn-outline" onClick={onClose}>Close</button>
         </div>
       </div>
+
+      {error && <p className="mb-4 rounded border border-red-500/30 bg-red-500/10 px-3 py-2 text-sm text-red-200">{error}</p>}
 
       <form onSubmit={addStaff} className="flex gap-3 items-center mb-4">
         <input className="w-2/5 p-2 rounded bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.03)]" placeholder="Full name" value={newName} onChange={(e) => setNewName(e.target.value)} />
