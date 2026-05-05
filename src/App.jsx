@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import RosterManagement from './components/RosterManagement'
 import SalesDataEntry from './components/SalesDataEntry'
+import logo from './assets/BW_LOGO_WITH_THORNS.png'
 
 export default function App() {
   const [showRoster, setShowRoster] = useState(false)
@@ -10,7 +11,7 @@ export default function App() {
     <div className="min-h-screen flex items-center justify-center bg-bw">
       <div className="bg-[rgba(255,255,255,0.02)] p-8 rounded-lg shadow-md w-full max-w-2xl text-center border border-[rgba(255,255,255,0.03)]">
         <div className="flex flex-col items-center">
-          <img src="/src/assets/BW_LOGO_WITH_THORNS.png" alt="BW logo" className="h-24 mb-4" />
+          <img src={logo} alt="BW logo" className="h-24 mb-4" />
           <h1 className="text-2xl font-bold mb-4 text-cream">Blackwoods Productivity Tracker</h1>
         </div>
 

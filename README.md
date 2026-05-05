@@ -33,13 +33,15 @@ Place your logo file at `src/assets/BW_LOGO_WITH_THORNS.png`. The app displays t
 
 Server and storage
 
-Start the lightweight server that stores roster data to `server/data/roster.json`:
+For local development, start the lightweight Express server that stores roster data to `server/data/roster.json`:
 
 ```bash
 npm run start:server
 ```
 
 The frontend expects the API at `http://localhost:3001/api/roster` when running locally.
+
+On Vercel, you do not manually start the server. Vercel runs the files in `/api` as serverless functions automatically when the app is deployed, and the frontend can call `/api/...` on the same deployment.
 
 For Vercel deployment, the same Express app is exposed as a serverless function under `/api`, and data storage switches to Vercel KV when `VERCEL` is set. That keeps the backend hosted with the app instead of relying on a separate database server.
 
