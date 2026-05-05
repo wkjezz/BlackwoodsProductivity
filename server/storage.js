@@ -12,6 +12,8 @@ const DATA_FILE = path.join(__dirname, 'data', 'roster.json')
 const SALES_FILE = path.join(__dirname, 'data', 'sales.json')
 const ROSTER_KEY = 'blackwoods:roster'
 const SALES_KEY = 'blackwoods:sales'
+const ROSTER_SEED = require('./data/roster.json')
+const SALES_SEED = require('./data/sales.json')
 
 function hasKvConfig() {
   return Boolean(
@@ -41,10 +43,12 @@ async function writeJsonFile(filePath, data) {
 async function readRoster() {
   if (useRemoteStorage()) {
     const data = await kv.get(ROSTER_KEY)
-    return Array.isArray(data) ? data : []
+    if (Array.isArray(data)) return data
+    await kv.set(ROSTER_KEY, ROSTER_SEED)
+    return Array.isArray(ROSTER_SEED) ? ROSTER_SEED : []
   }
 
-  return readJsonFile(DATA_FILE, [])
+  return readJsonFile(DATA_FILE, ROSTER_SEED)
 }
 
 async function writeRoster(data) {
@@ -59,10 +63,12 @@ async function writeRoster(data) {
 async function readSalesWeeks() {
   if (useRemoteStorage()) {
     const data = await kv.get(SALES_KEY)
-    return Array.isArray(data) ? data : []
+    if (Array.isArray(data)) return data
+    await kv.set(SALES_KEY, SALES_SEED)
+    return Array.isArray(SALES_SEED) ? SALES_SEED : []
   }
 
-  return readJsonFile(SALES_FILE, [])
+  return readJsonFile(SALES_FILE, SALES_SEED)
 }
 
 async function writeSalesWeeks(data) {
